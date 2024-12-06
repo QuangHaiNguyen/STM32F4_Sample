@@ -29,9 +29,9 @@ jobs:
   
       - name: Build project
         run: |
-          ls
-          pwd
-          ls /
+          cp -r . /workdir/project
+          cd /workdir
+          python3 stm32_build.py -b stm32ide
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
