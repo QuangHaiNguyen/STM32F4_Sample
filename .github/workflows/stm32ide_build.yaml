@@ -29,7 +29,7 @@ jobs:
   
       - name: Build project
         run: |
-          docker run --volume=${PWD}:\workdir\project ghcr.io/quanghainguyen/stm32-build:latest python3 stm32_build.py -b stm32ide
+          ls
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
