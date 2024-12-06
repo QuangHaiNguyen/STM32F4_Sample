@@ -32,8 +32,6 @@ jobs:
           cp -r . /workdir/project
           cd /workdir
           python3 stm32_build.py -b stm32ide
-          ls 
-          ls project/Debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -41,4 +39,4 @@ jobs:
           name: STM32F4_Sample.artifacts
           # The output artifacts are BLE_p2pServer.elf, BLE_p2pServer.map, etc.
           # Use a wildcard pattern to get them all
-          path: project/Debug/STM32F4_Sample.*
+          path: project/Debug/STM32F4_sample.*
