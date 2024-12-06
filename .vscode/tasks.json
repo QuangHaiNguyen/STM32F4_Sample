@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "cmd.exe",
+                "args": ["/d", "/c"]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CubeProg: Flash project (SWD)",
+            "command": "STM32_Programmer_CLI",
+            "args": [
+                "--connect",
+                "port=swd",
+                "--download",
+                "${workspaceFolder}/Debug/STM32F4_Sample.elf", //Modify this line to point to the correct binary file
+                "-hardRst", // Hardware reset - if rst pin is connected
+                "-rst", // Software reset (backup)
+                "--start" // Start execution
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "stm32 docker: cmake build",
+            "command": "docker run --rm --tty --volume=${workspaceFolder}:/workdir/project stm32ide python3 stm32_build.py -b stm32cmake -p Debug",
+            "args": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "type": "shell",
+            "label": "stm32 docker: stm32ide build",
+            "command": "docker run --rm --tty --volume=${workspaceFolder}:/workdir/project stm32ide python3 stm32_build.py -b stm32ide",
+            "args": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+    ]
+}
