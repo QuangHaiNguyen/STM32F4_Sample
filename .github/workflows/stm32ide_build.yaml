@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/quanghainguyen/stm32-build:latest
+      credentials:
+        username: haiquangnguyen
+        password: ${{ secrets.REPO_PAT }}
 
     steps:
       - name: Checkout code
@@ -23,7 +26,7 @@ jobs:
         with:
           # submodules too
           submodules: recursive
-
+  
       - name: Build project
         run: |
           docker run --volume=${PWD}:\workdir\project ghcr.io/quanghainguyen/stm32-build:latest python3 stm32_build.py -b stm32ide
