@@ -32,6 +32,8 @@ jobs:
           cp -r . /workdir/project
           cd /workdir
           python3 stm32_build.py -b stm32ide
+          ls workdir
+          ls workdir/project
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
