@@ -33,7 +33,7 @@ jobs:
           cd /workdir
           python3 stm32_build.py -b stm32ide
           ls 
-          ls project
+          ls project/Debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
